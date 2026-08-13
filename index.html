@@ -133,12 +133,15 @@
     gap: 14px; padding: 32px 16px 8px; align-items: start;
   }
   .island .player .tabs {
-    position: absolute; top: 9px; left: 0; right: 0;
-    display: flex; justify-content: center; gap: 74px;
+    position: absolute; top: 10px; left: 0; right: 0;
+    /* Same proportions as the app: each trio centered in its side zone,
+       the middle column is the "notch". */
+    display: grid; grid-template-columns: 1fr 42% 1fr;
     font-size: 11px; line-height: 1;
     color: rgba(255,255,255,0.35);
   }
-  .island .player .tabs span { display: flex; gap: 11px; }
+  .island .player .tabs span { display: flex; gap: 12px; justify-content: center; }
+  .island .player .tabs span:last-child { grid-column: 3; }
   .island .player .tabs b { color: #fff; font-weight: 400; }
   .island .player .tabs i { font-style: normal; }
   .island .player .cover {
