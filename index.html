@@ -101,11 +101,16 @@
   .island {
     position: absolute; top: 0; left: 50%; transform: translateX(-50%);
     background: #000; border-radius: 0 0 22px 22px;
-    width: 200px; height: 34px;
-    animation: island-cycle 7s ease-in-out infinite;
+    width: 210px; height: 34px;
+    transition: width 0.38s cubic-bezier(0.32, 1.35, 0.4, 1),
+                height 0.38s cubic-bezier(0.32, 1.35, 0.4, 1);
+    overflow: hidden; cursor: pointer;
+    box-shadow: 0 14px 44px rgba(0,0,0,0.5), 0 3px 10px rgba(0,0,0,0.4);
+  }
+  .island .mini {
+    position: absolute; inset: 0 12px auto; height: 34px;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 12px; overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+    transition: opacity 0.2s ease;
   }
   .island .art {
     width: 18px; height: 18px; border-radius: 5px; flex: none;
@@ -119,12 +124,41 @@
   .island .bars i:nth-child(2) { animation-delay: 0.2s; }
   .island .bars i:nth-child(3) { animation-delay: 0.4s; }
   @keyframes bounce { from { transform: scaleY(0.35); } to { transform: scaleY(1); } }
-  @keyframes island-cycle {
-    0%, 18%   { width: 200px; height: 34px; }
-    28%, 72%  { width: 320px; height: 44px; }
-    82%, 100% { width: 200px; height: 34px; }
+
+  /* expanded mock player, revealed on hover */
+  .island .player {
+    position: absolute; inset: 0; opacity: 0; transition: opacity 0.25s ease 0.1s;
+    display: grid; grid-template-columns: 84px 1fr;
+    gap: 14px; padding: 14px 16px 12px; align-items: start;
   }
-  .demo .caption { text-align: center; margin-top: 70px; font-size: 13px; color: var(--text-faint); }
+  .island .player .cover {
+    width: 84px; height: 84px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+  }
+  .island .player .meta { padding-top: 26px; }
+  .island .player .line { height: 9px; border-radius: 5px; background: rgba(255,255,255,0.85); width: 70%; }
+  .island .player .line.dim { background: rgba(255,255,255,0.35); width: 45%; height: 7px; margin-top: 7px; }
+  .island .player .track {
+    margin-top: 16px; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.2);
+    position: relative;
+  }
+  .island .player .track::before {
+    content: ""; position: absolute; inset: 0 45% 0 0;
+    background: #fff; border-radius: 2px;
+  }
+  .island .player .track::after {
+    content: ""; position: absolute; top: 50%; left: 55%;
+    width: 9px; height: 9px; border-radius: 50%; background: #fff;
+    transform: translate(-50%, -50%);
+  }
+  .island .player .controls {
+    grid-column: 1 / -1; display: flex; justify-content: center; gap: 26px;
+    color: #fff; font-size: 13px; margin-top: 2px;
+  }
+  .island:hover { width: 340px; height: 150px; }
+  .island:hover .mini { opacity: 0; }
+  .island:hover .player { opacity: 1; }
+  .demo .caption { text-align: center; margin-top: 176px; font-size: 13px; color: var(--text-faint); }
 
   /* ---- features ---- */
   section { padding: 88px 0 0; }
@@ -209,10 +243,21 @@
     <div class="demo">
       <div class="menubar"><span>&#63743;</span><span>Wed 13:37</span></div>
       <div class="island">
-        <span class="art"></span>
-        <span class="bars"><i></i><i></i><i></i></span>
+        <div class="mini">
+          <span class="art"></span>
+          <span class="bars"><i></i><i></i><i></i></span>
+        </div>
+        <div class="player">
+          <div class="cover"></div>
+          <div class="meta">
+            <div class="line"></div>
+            <div class="line dim"></div>
+            <div class="track"></div>
+          </div>
+          <div class="controls"><span>◀◀</span><span>❚❚</span><span>▶▶</span></div>
+        </div>
       </div>
-      <p class="caption">Hover the notch — it opens. Play music — it breathes. Do nothing — it disappears.</p>
+      <p class="caption">↑ Hover the island — that's exactly how it opens on your Mac. Play music — it breathes. Do nothing — it disappears.</p>
     </div>
   </div>
 </header>
