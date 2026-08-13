@@ -190,6 +190,7 @@
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
+      <a href="https://checkout.freemius.com/product/37000/plan/61388/" data-buy>Buy</a>
     </div>
   </nav>
 </div>
@@ -200,11 +201,10 @@
     <h1>Your notch,<br><span class="grad">finally alive.</span></h1>
     <p class="sub">A native macOS app that turns the space around your MacBook's notch into a beautiful, interactive Dynamic Island. Invisible until you need it.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/dprhmk/dynamic-island-site/releases/download/v1.0.0/DynamicIsland-1.0.0.dmg">Download free</a>
-      <!-- TODO: replace # with the Monobank jar link (send.monobank.ua/jar/...) -->
-      <a class="btn btn-ghost" href="#support">Support the project ☕</a>
+      <a class="btn btn-primary" href="https://checkout.freemius.com/product/37000/plan/61388/" data-buy>Buy — $9.99</a>
+      <a class="btn btn-ghost" href="#features">See what it does</a>
     </div>
-    <p class="hero-note">Free · macOS 15+ · Apple Silicon · Native Swift, zero Electron</p>
+    <p class="hero-note">One-time purchase · macOS 15+ · Apple Silicon · Native Swift, zero Electron</p>
 
     <div class="demo">
       <div class="menubar"><span>&#63743;</span><span>Wed 13:37</span></div>
@@ -256,22 +256,20 @@
   </div>
 </section>
 
-<section id="support">
+<section id="pricing">
   <div class="wrap">
-    <p class="kicker">Free &amp; donationware</p>
-    <h2>Free forever. Fuel it if you love it</h2>
+    <p class="kicker">One-time purchase</p>
+    <h2>Own it forever</h2>
     <div class="price-card">
-      <div class="price">$0</div>
+      <div class="price"><small>$</small>9.99</div>
       <ul>
+        <li>Lifetime license, all 1.x updates</li>
         <li>All modules: Music + Screenshots + Files</li>
-        <li>All updates included</li>
-        <li>No subscription, no account, no tracking</li>
+        <li>No subscription, no tracking</li>
         <li>Built by one developer in Ukraine 🇺🇦</li>
       </ul>
-      <a class="btn btn-primary" href="https://github.com/dprhmk/dynamic-island-site/releases/download/v1.0.0/DynamicIsland-1.0.0.dmg">Download .dmg</a>
-      <!-- TODO: replace # with the Monobank jar link (send.monobank.ua/jar/...) -->
-      <a class="btn btn-ghost" href="#" style="margin-left:10px">Donate ☕</a>
-      <p class="hero-note" style="margin-top:14px">If it saves you a click a day — toss a coffee in the jar.</p>
+      <a class="btn btn-primary" href="https://checkout.freemius.com/product/37000/plan/61388/" data-buy>Buy Dynamic Island</a>
+      <p class="hero-note" style="margin-top:14px">Instant download after checkout · .dmg · macOS 15+</p>
     </div>
   </div>
 </section>
@@ -316,5 +314,25 @@
   </footer>
 </div>
 
+<script src="https://checkout.freemius.com/js/v1/"></script>
+<script>
+  // Freemius overlay checkout; the href is the hosted-page fallback if JS fails.
+  (function () {
+    var checkout;
+    try {
+      checkout = new FS.Checkout({
+        product_id: 37000,
+        public_key: "pk_3834427c91b53d0c00939ad0a0fd1",
+        plan_id: 61388
+      });
+    } catch (e) { return; }
+    document.querySelectorAll("[data-buy]").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        e.preventDefault();
+        checkout.open({ name: "Dynamic Island", licenses: 1 });
+      });
+    });
+  })();
+</script>
 </body>
 </html>
